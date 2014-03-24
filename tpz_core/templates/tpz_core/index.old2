@@ -1,0 +1,21 @@
+{% load bootstrap3 %}
+
+{% bootstrap_css %}{% bootstrap_javascript %}
+
+<div class="row">
+	<div class="col-md-2" style="background-color: F89406">
+		<h1 class="text-center">Idole</h1>
+	</div>
+	<div class="col-md-2" style="background-color: 0044CC">
+		<h1 class="text-center">Cytaty</h1>
+	</div>
+	<div class="col-md-4">
+		<h1 class="text-center">Hashtagi</h1>
+	</div>
+	<div class="col-md-2">
+		<h1 class="text-center">Retweety</h1>
+	</div>
+	<div class="col-md-2">
+		<h1 class="text-center">YouTube</h1>
+	</div>
+</div>

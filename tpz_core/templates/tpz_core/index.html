@@ -1,0 +1,135 @@
+{% load bootstrap3 %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{% bootstrap_css %} {% bootstrap_javascript %}
+
+<div class="container">
+	<div class="row">
+		<div class="btn-group btn-group-justified">
+			<div class="btn-group btn-group-lg">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					Hashtagi <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="{% url 'tpz_core:tweet_hashtag' %}">Zatweetuj najpopularniejszy</a></li>
+					<li><a href="{% url 'tpz_core:choose_hashtag' %}">Wybierz do zatweetowania</a></li>
+				</ul>
+			</div>
+
+			<div class="btn-group btn-group-lg">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					Idole <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="{% url 'tpz_core:post_idol' %}">Wspomnij dzisiejszego</a></li>
+				</ul>
+			</div>
+
+			<div class="btn-group btn-group-lg">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					Cytaty <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="{% url 'tpz_core:post_quote' %}">Zatweetuj autorstwa dzisiejszego idola</a></li>
+				</ul>
+			</div>
+
+			<div class="btn-group btn-group-lg">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					Przyjaciele <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="{% url 'tpz_core:add_friends' %}">Poszerz bazę przyjaciół</a></li>
+					<li><a href="{% url 'tpz_core:retweet_most_recent' %}">Retweetuj najbardziej aktualną treść</a></li>
+				</ul>
+			</div>
+
+			<div class="btn-group btn-group-lg">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					YouTube <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="{% url 'tpz_core:tweet_youtube' %}">Zatweetuj najnowszy film</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 text-center">
+			<h1>Tweetomat Politycznie Zaangażowany</h1>
+			{% if prefChanged %}
+			<div class="alert alert-success">
+				<h2>Preferencje zmienione!</h2>
+			</div>
+			{% endif %}
+			{% if prepared %}
+			<div class="alert alert-success">
+				<h2>Konto przystosowane!</h2>
+			</div>
+			{% endif %}
+			{% if post_idol %}
+			<div class="alert alert-success">
+				<h2>Zamieszczono wspomnienie o treści</h2>
+				"{{ post_idol }}"
+			</div>
+			{% endif %}
+			{% if post_quote %}
+			<div class="alert alert-success">
+				<h2>Zamieszczono tweet z cytatem o treści</h2>
+				"{{ post_quote }}"
+			</div>
+			{% endif %}
+			{% if retweet %}
+			<div class="alert alert-success">
+				<h2>Zamieszczono retweet o treści</h2>
+				"{{ retweet }}"
+			</div>
+			{% endif %}
+			{% if youtube %}
+			<div class="alert alert-success">
+				<h2>Zamieszczono tweet z wideo o linku</h2>
+				"{{ youtube }}"
+			</div>
+			{% endif %}
+			{% if hashtag %}
+			<div class="alert alert-success">
+				<h2>Zamieszczono tweet z hashtagiem o treści</h2>
+				"{{ hashtag }}"
+			</div>
+			{% endif %}
+			{% if added_friends %}
+			<div class="alert alert-success">
+				<h2>Dodano przyjaciół</h2>
+				{{ added_friends }}
+			</div>
+			{% endif %}
+			{% if error %}
+			<div class="alert alert-danger">
+				<h2>Wystąpił błąd.</h2>
+				Być może został przekroczony limit zapytań do Twittera. Może też nie pojawiła się nowa treść i tweety się duplikują. Spróbuj ponownie za jakiś czas.
+			</div>
+			{% endif %}
+			{% if noidol %}
+			<div class="alert alert-danger">
+				<h2>Nie ma idola w bazie.</h2>
+				Żaden z idoli nie ma dziś rocznicy urodzenia ani śmierci.
+			</div>
+			{% endif %}
+			{% if noquote %}
+			<div class="alert alert-danger">
+				<h2>Nie ma cytatu w bazie.</h2>
+				Albo nikt dzisiaj nie ma rocznicy urodzenia bądź śmierci, albo żadna z takich osób nie ma w bazie swoich cytatów.
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row text-center">
+		<a href="{% url 'tpz_core:pref' %}"><button type="button" class="btn btn-warning">
+			Preferencje
+		</button></a>
+		<a href="{% url 'tpz_core:prepare' %}"><button type="button" class="btn btn-success">
+			Przystosuj konto
+		</button></a>
+	</div>
+</div>

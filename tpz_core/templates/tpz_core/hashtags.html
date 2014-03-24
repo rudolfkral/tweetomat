@@ -1,0 +1,27 @@
+{% load bootstrap3 %}
+
+{% bootstrap_css %} {% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<div class="text-center">
+			<h1>Wybierz hashtaga</h1>
+		</div>
+	</div>
+</div>
+{% for htag in hashtag_list %}
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<div class="text-center">
+			<h3>#{{ htag.name }}({{ htag.retweets }} retweetów)</h3>
+			<a href="{% url 'tpz_core:tweet_hashtag' %}?chosen={{ htag.name }}">
+				<button type="button" class="btn btn-success">
+					Wybierz
+				</button>
+			</a>
+		</div>
+	</div>
+</div>
+{% endfor %}
